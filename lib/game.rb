@@ -1,4 +1,4 @@
-# handles Game info. it does not puts, it nevers scrapes, it only cares about amiibo.
+# handles Game info. it does not puts, it nevers scrapes, it only cares about games.
 class Game
 
   attr_accessor :name, :description, :release_year
@@ -6,14 +6,13 @@ class Game
   @@all = []
 
   def initialize
+    @name = name
+    @description = description
+    @release_year = release_year
     @@all << self
   end
 
   def self.all
     @@all
-  end
-
-  def self.reset_all
-    @@all.clear
   end
 end

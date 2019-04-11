@@ -2,16 +2,18 @@
 class CLI
   def call
     # Should provide output to user that makes sense without any additional explanation.
-    puts "Welcome to my Nintendo Amiibo application!"
-    puts "Amiibo are Nintendo themed figurines that utilize near field communication (NFC) and radio frequency identification (RFID) to interact with Nintendo game consoles and provide in-game content"
-    puts "With over 150 different amiibo in existense, the purpose of this application is to provide a detailed description of a specific amiibo you select"
+    puts "Welcome to my IGN Top 100 Video Games application!"
+    puts "IGN is an American video game and entertainment media website that has compiled a list of their top 100 video games of all time"
+    puts "The purpose of this application is to show you the release year and description a game you choose from IGN's list"
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "Type 'exit' to leave the application"
-    puts " "
-    puts "First, input a letter to generate a list of amiibo that begin with that letter:"
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts "First, enter a single letter to generate a list of IGN's top 100 video games that begin with that letter:"
+
     letter = gets.chomp.downcase
     while letter != "exit"
       if letter =~ /\A\s*\Z/
-        puts "No blank input! Please input a single letter:"
+        puts "No blanks! Please input a single letter:"
         letter = gets.chomp.downcase
       elsif letter.length > 1
         puts "Too many characters or invalid format! Please input a single letter:"
@@ -21,8 +23,8 @@ class CLI
         letter = gets.chomp.downcase
       else
         puts letter #display generated list of amiibos starting with user input 'letter'
-      break
-      end
+       break
+       end
     end
 
 

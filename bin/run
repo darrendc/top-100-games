@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 require "./config/environment.rb"
 
-# CLI.new.call
+#CLI.new.call
 Scraper.new.get_page
