@@ -1,14 +1,14 @@
 # handles Game info. it does not puts, it nevers scrapes, it only cares about games.
 class Game
 
-  attr_accessor :name, :description, :release_year
+  attr_accessor :name, :rating, :developer
 
   @@all = []
 
-  def initialize(name, description, release_year)
+  def initialize(name, rating, developer)
     @name = name
-    @description = description
-    @release_year = release_year
+    @rating = rating
+    @developer = developer
     @@all << self
   end
 
@@ -26,8 +26,10 @@ class Game
     if number_valid?(number, chosen_list)
       index = number - 1
       name = chosen_list[index]
-      release_year = Scraper.release_year(name)
-      Game.new(name, description, release_year)
+      rating = Scraper.rating(name)
+      binding.pry
+      # developer = Scraper.developer(name)
+      Game.new(name, description, rating)
     end
   end
 

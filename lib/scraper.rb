@@ -8,10 +8,16 @@ class Scraper
     doc.css('.item-heading a').map { |el| el.text }.sort #generates numbered list of games in alphabetical order
   end
 
-  def self.release_year
-    doc1 = Nokogiri::HTML(open('https://www.ign.com/lists/top-100-games/'))
-    doc1.css('div.item-body').css('span.item-label-value').text
-    binding.pry
+  def self.rating(name)
+    doc = Nokogiri::HTML(open('https://www.ign.com/lists/top-100-games/'))
+    game_list = doc.css('.item-heading a').map { |el| el.text }.reverse
+    ranked_list = game_list.each_with_index.map do |game, index|
+      rating = index + 1
+      hash = {}
+      hash[game] = rating
+      hash
+    end
+    ranked_list.select { |hash| hash.keys.first == name }.first[name]
   end
 
   def self.description
