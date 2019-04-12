@@ -10,7 +10,7 @@ class Scraper
 
   def self.rating(name)
     doc = Nokogiri::HTML(open('https://www.ign.com/lists/top-100-games/'))
-    game_list = doc.css('.item-heading a').map { |el| el.text }.reverse
+    game_list = doc.css('.item-heading a').map { |el| el.text }
     ranked_list = game_list.each_with_index.map do |game, index|
       rating = index + 1
       hash = {}

@@ -12,14 +12,14 @@ class Game
     @@all << self
   end
 
+  def self.all
+    @@all
+  end
+
   def self.get_first_letter(letter)
     Scraper.get_page.select do |char|
       char.split('').first.downcase == letter
     end
-  end
-
-  def self.all
-    @@all
   end
 
   def self.create(number, chosen_list)
