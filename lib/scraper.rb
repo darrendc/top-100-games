@@ -3,9 +3,17 @@ class Scraper
 
 #attr_accessor :doc
 
-  def get_page
+  def self.get_page
     doc = Nokogiri::HTML(open('https://www.ign.com/lists/top-100-games/'))
-    doc.css('.item-heading a').map {|el| el.text}.sort.each_with_index.map {|el, i| "#{i + 1}. #{el}"} #generates numbered list of games in alphabetical order
+    doc.css('.item-heading a').map { |el| el.text }.sort #generates numbered list of games in alphabetical order
+  end
+
+  def self.release_year
+    doc1 = Nokogiri::HTML(open('https://www.ign.com/lists/top-100-games/'))
+    doc1.css('div.item-body').css('span.item-label-value').text
     binding.pry
+  end
+
+  def self.description
   end
 end

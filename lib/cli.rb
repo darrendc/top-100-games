@@ -22,12 +22,19 @@ class CLI
         puts "Please select a letter in english from A-Z:"
         letter = gets.chomp.downcase
       else
-        puts letter #display generated list of amiibos starting with user input 'letter'
-       break
-       end
+        chosen_list = Game.get_first_letter(letter) #display generated list of amiibos starting with user input 'letter'
+        chosen_list.each_with_index do |name, i|
+          puts "#{i + 1}. #{name}"
+        end
+        puts "Select a game by entering its corresponding number"
+        number = gets.chomp.to_i
+        Game.create(number, chosen_list)
+      end
+
+      puts "Select a game by entering its corresponding number"
+
+      number = gets.chomp.to_i
     end
-
-
   end
   #Scrape and save all amiibos
 end
