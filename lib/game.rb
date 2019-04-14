@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 # handles Game info. it does not puts, it nevers scrapes, it only cares about games.
 class Game
-
   attr_accessor :name, :rating, :developer
 
   @@all = []
@@ -16,9 +16,9 @@ class Game
     @@all
   end
 
-  def self.get_first_letter(letter)
-    Scraper.get_page.select do |char|
-      char.split('').first.downcase == letter
+  def self.get_first_letter(letter) # this goes in the scraper
+    Scraper.new.game_list.select do |char|
+      char.split("").first.downcase == letter
     end
   end
 
@@ -26,14 +26,15 @@ class Game
     if number_valid?(number, chosen_list)
       index = number - 1
       name = chosen_list[index]
-      rating = Scraper.rating(name)
-      binding.pry
+      rating = Scraper.new.rating(name)
+      developer = Scraper.new.developer(name)
       # developer = Scraper.developer(name)
-      Game.new(name, description, rating)
+      Game.new(name, rating, developer)
+    else puts "Select a game by entering its corresponding numbe"
     end
   end
 
-  def self.number_valid?(number, chosen_list)
-    number > 0 && number <= chosen_list.length
+  def self.number_valid?(number, chosen_list) # move this to cli
+    number.positive? && number <= chosen_list.length
   end
 end

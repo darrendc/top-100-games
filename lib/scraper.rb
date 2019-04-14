@@ -1,16 +1,18 @@
-# handles scraping and collecting values, probably also going to create Amiibos. It's NOT going to puts.
+# frozen_string_literal: true
+
+# handles scraping and collecting values probably also going to create Games. It's NOT going to puts
+
 class Scraper
-
-#attr_accessor :doc
-
-  def self.get_page
-    doc = Nokogiri::HTML(open('https://www.ign.com/lists/top-100-games/'))
-    doc.css('.item-heading a').map { |el| el.text }.sort #generates numbered list of games in alphabetical order
+  def page
+    @page ||= Nokogiri::HTML(open("https://www.ign.com/lists/top-100-games/"))
   end
 
-  def self.rating(name)
-    doc = Nokogiri::HTML(open('https://www.ign.com/lists/top-100-games/'))
-    game_list = doc.css('.item-heading a').map { |el| el.text }
+  def game_list
+    page.css(".item-heading a").map { |el| el.text }.slice(0,50).reverse
+    # generates numbered list of games in alphabetical order # create your get_list method
+  end
+
+  def rating(name)
     ranked_list = game_list.each_with_index.map do |game, index|
       rating = index + 1
       hash = {}
@@ -20,6 +22,9 @@ class Scraper
     ranked_list.select { |hash| hash.keys.first == name }.first[name]
   end
 
-  def self.description
+  def developer(name)
+    chunk = page.css(".item-heading a").select {|url| url.children.first.text == name }
+    url = chunk.first.attributes["href"].value
+    developer_name = Nokogiri::HTML(open(url)).css('.jsx-2881975397.developer').first.children.text
   end
 end
