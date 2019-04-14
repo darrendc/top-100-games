@@ -8,7 +8,7 @@ class Scraper
   end
 
   def game_list
-    page.css(".item-heading a").map { |el| el.text }.slice(0,50).reverse
+    page.css(".item-heading a").map { |el| el.text }.slice(0, 50).reverse
     # generates numbered list of games in alphabetical order # create your get_list method
   end
 
@@ -23,8 +23,8 @@ class Scraper
   end
 
   def developer(name)
-    chunk = page.css(".item-heading a").select {|url| url.children.first.text == name }
+    chunk = page.css(".item-heading a").select { |url| url.children.first.text == name }
     url = chunk.first.attributes["href"].value
-    developer_name = Nokogiri::HTML(open(url)).css('.jsx-2881975397.developer').first.children.text
+    Nokogiri::HTML(open(url)).css(".jsx-2881975397.developer").first.children.text
   end
 end
