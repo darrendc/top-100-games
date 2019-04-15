@@ -23,12 +23,12 @@ class Game
   end
 
   def self.create(number, chosen_list)
-      index = number.to_i - 1
-      name = chosen_list[index]
-      rating = Scraper.new.rating(name)
-      developer = Scraper.new.developer(name)
-      # developer = Scraper.developer(name)
-      Game.new(name, rating, developer)
+    index = number.to_i - 1
+    name = chosen_list[index]
+    rating = Scraper.new.rating(name)
+    developer = Scraper.new.developer(name)
+    # developer = Scraper.developer(name)
+    Game.new(name, rating, developer)
   end
 
   # def self.number_valid?(number, chosen_list)

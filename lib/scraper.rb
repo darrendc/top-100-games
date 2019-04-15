@@ -8,7 +8,7 @@ class Scraper
   end
 
   def game_list
-    page.css(".item-heading a").map { |el| el.text }.slice(0, 50).reverse
+    page.css(".item-heading a").map(&:text).slice(0, 50).reverse
     # generates numbered list of games in alphabetical order # create your get_list method
   end
 
