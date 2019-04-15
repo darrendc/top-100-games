@@ -1,5 +1,7 @@
+# Instructions
+
 Welcome to my first CLI application!
-This application scrapes IGN's list of the top 50 greatestest games of all times and returns the game's rating and developer.
+This application scrapes IGN's list of the greatestest games of all times and returns the game's rating and developer for ranks 100-51.
 
 The application first displays an introduction.
 

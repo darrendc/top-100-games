@@ -33,7 +33,7 @@ class CLI
       game = Game.create(input, chosen_list)
       puts "Rank: #{game.rating}, #{game.developer}" # final output
       sleep(3)
-      call # restarts program
+      call # restarts application
     else
       number_block
     end
@@ -62,12 +62,12 @@ class CLI
   end
 
   def introduction
-    puts "Welcome to my IGN Top 50 Video Games application!"
+    puts "Welcome to my IGN Bottom 100 Video Games application!"
     puts "IGN is an American video game and entertainment media website"
-    puts "that has compiled a list of their top 100 video games of all time"
+    puts "that has compiled a list of their top video games of all time"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "The purpose of this application is to display"
-    puts "the ranking and developer of a top 50 game you select from IGN's list"
+    puts "the ranking and developer of a video game you select from games ranked 100-51"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "Type 'exit' at any input points to leave the application"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"

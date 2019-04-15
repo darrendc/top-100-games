@@ -14,7 +14,7 @@ class Scraper
     ranked_list = game_list.each_with_index.map do |game, index|
       rating = index + 1
       hash = {}
-      hash[game] = rating
+      hash[game] = rating + 50
       hash
     end
     ranked_list.select { |hash| hash.keys.first == name }.first[name]
