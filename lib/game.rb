@@ -27,12 +27,6 @@ class Game
     name = chosen_list[index]
     rating = Scraper.new.rating(name)
     developer = Scraper.new.developer(name)
-    # developer = Scraper.developer(name)
     Game.new(name, rating, developer)
   end
-
-  # def self.number_valid?(number, chosen_list)
-  #   # move this to cli
-  #   number.positive? && number <= chosen_list.length
-  # end
 end

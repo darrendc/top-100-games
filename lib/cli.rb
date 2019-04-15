@@ -5,7 +5,23 @@ class CLI
   def call
     introduction
     @input = gets.chomp.downcase
-    letter_block while input != "exit"
+    letter_block
+  end
+
+  def letter_block
+    while input != "exit"
+      if letter_valid?(input)
+        @chosen_list = Game.get_first_letter(input)
+
+        chosen_list.each_with_index do |name, i|
+          puts "#{i + 1}. #{name}"
+        end
+        number_block
+      else
+        @input = gets.chomp.downcase
+        letter_block
+      end
+    end
   end
 
   def number_block
@@ -15,7 +31,6 @@ class CLI
 
     if number_valid?(input)
       game = Game.create(input, chosen_list)
-      # instead of passing
       puts "Rank: #{game.rating}, #{game.developer}" # final output
       sleep(3)
       call # restarts program
@@ -45,22 +60,6 @@ class CLI
   def number_valid?(number)
     number.to_i.positive? && number.to_i <= chosen_list.length
   end
-
-  def letter_block
-    if letter_valid?(input)
-      @chosen_list = Game.get_first_letter(input)
-
-      chosen_list.each_with_index do |name, i|
-        puts "#{i + 1}. #{name}"
-      end
-      number_block
-    else
-      @input = gets.chomp.downcase
-      letter_block
-    end
-  end
-
-  def restart; end
 
   def introduction
     puts "Welcome to my IGN Top 50 Video Games application!"

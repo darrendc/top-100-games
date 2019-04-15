@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# handles scraping and collecting values probably also going to create Games. It's NOT going to puts
-
 class Scraper
   def page
     @page ||= Nokogiri::HTML(open("https://www.ign.com/lists/top-100-games/"))
@@ -9,7 +7,7 @@ class Scraper
 
   def game_list
     page.css(".item-heading a").map(&:text).slice(0, 50).reverse
-    # generates numbered list of games in alphabetical order # create your get_list method
+    # generates numbered list of games in alphabetical order # create get_list method
   end
 
   def rating(name)
