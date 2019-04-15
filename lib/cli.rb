@@ -63,7 +63,7 @@ class CLI
   def restart; end
 
   def introduction
-    puts "Welcome to my IGN Top 100 Video Games application!"
+    puts "Welcome to my IGN Top 50 Video Games application!"
     puts "IGN is an American video game and entertainment media website"
     puts "that has compiled a list of their top 100 video games of all time"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
