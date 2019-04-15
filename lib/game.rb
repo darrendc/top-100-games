@@ -23,19 +23,16 @@ class Game
   end
 
   def self.create(number, chosen_list)
-    if number_valid?(number, chosen_list)
-      index = number - 1
+      index = number.to_i - 1
       name = chosen_list[index]
       rating = Scraper.new.rating(name)
       developer = Scraper.new.developer(name)
       # developer = Scraper.developer(name)
       Game.new(name, rating, developer)
-    else puts "Select a game by entering its corresponding numbe"
-    end
   end
 
-  def self.number_valid?(number, chosen_list)
-    # move this to cli
-    number.positive? && number <= chosen_list.length
-  end
+  # def self.number_valid?(number, chosen_list)
+  #   # move this to cli
+  #   number.positive? && number <= chosen_list.length
+  # end
 end

@@ -1,33 +1,69 @@
 # frozen_string_literal: true
 
 class CLI
+attr_accessor :chosen_list, :input
   def call
+
     introduction
-    # Should provide output to user that makes sense without any additional explanation.
-    letter = gets.chomp.downcase
-    while letter != "exit"
-      if letter =~ /\A\s*\Z/
-        puts "No blanks! Please input a single letter:"
-        letter = gets.chomp.downcase
-      elsif letter.length > 1
-        puts "Too many characters or invalid format! Please input a single letter:"
-        letter = gets.chomp.downcase
-      elsif letter !~ /[a-z]/
-        puts "Please select a letter in English from A-Z:"
-        letter = gets.chomp.downcase
-      else
-        chosen_list = Game.get_first_letter(letter)
-        chosen_list.each_with_index do |name, i|
-          puts "#{i + 1}. #{name}"
-        end
-
-        puts "Select a game by entering its corresponding number"
-
-        number = gets.chomp.to_i
-        game = Game.create(number, chosen_list) # instead of passing
-        puts "Rating: #{game.rating}, #{game.developer}"
-      end
+    @input = gets.chomp.downcase
+    while input != "exit"
+      letter_block
     end
+  end
+
+  def number_block
+    puts "Select a game by entering its corresponding number"
+    @input = gets.chomp
+    return if @input == "exit"
+    if number_valid?(input)
+      game = Game.create(input, chosen_list)
+       # instead of passing
+      puts "Rank: #{game.rating}, #{game.developer}"  # final output
+      sleep(3)
+      call # restarts program
+    else
+      number_block
+    end
+  end
+
+  def letter_valid?(letter)
+    if letter =~ /\A\s*\Z/
+      puts "No blanks! Please input a single letter:"
+      false
+    elsif letter.length > 1
+      puts "Too many characters or invalid format! Please input a single letter:"
+      false
+    elsif letter !~ /[a-z]/
+      puts "Please select a letter in English from A-Z:"
+      false
+    elsif Game.get_first_letter(letter).empty?
+      puts "Game does not exist"
+      false
+    else
+      true
+    end
+  end
+
+  def number_valid?(number)
+    number.to_i > 0 && number.to_i <= chosen_list.length
+  end
+
+  def letter_block
+    if letter_valid?(input)
+      @chosen_list = Game.get_first_letter(input)
+
+      chosen_list.each_with_index do |name, i|
+        puts "#{i + 1}. #{name}"
+      end
+      number_block
+    else
+      @input = gets.chomp.downcase
+      letter_block
+    end
+  end
+
+  def restart
+
   end
 
   def introduction
