@@ -50,7 +50,7 @@ class CLI
       puts "Please select a letter in English from A-Z:"
       false
     elsif Game.get_first_letter(letter).empty?
-      puts "Game does not exist"
+      puts "Title does not exist. Please select another letter:"
       false
     else
       true
@@ -67,7 +67,7 @@ class CLI
     puts "that has compiled a list of their top 100 video games of all time"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "The purpose of this application is to display"
-    puts "the ranking and developer of a game you choose from IGN's list"
+    puts "the ranking and developer of a top 50 game you select from IGN's list"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "Type 'exit' at any input points to leave the application"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
